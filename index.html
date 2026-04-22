@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xiao LU & Yiran WANG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #F8F7F2;
+  --ink:     #141210;
+  --ink-2:   #6B6862;
+  --ink-3:   #9B9890;
+  --ol-800:  #6F7061;
+  --ol-700:  #95976D;
+  --ol-600:  #B3B681;
+  --ol-500:  #CED19A;
+  --ol-400:  #E3E5B8;
+  --ol-300:  #F4F5DB;
+  --ol-200:  #FBFCEE;
+  --surface: #F0F0E8;
+  --border:  #E3E2DA;
+  --sh-bg:   #18160F;
+  --fd: 'Bricolage Grotesque', sans-serif;
+  --fb: 'Space Grotesk', sans-serif;
+  --max: 1160px;
+  --gutter: clamp(20px, 5vw, 80px);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--fb); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ''; width: 20px; height: 1px; background: currentColor; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px var(--gutter);
+  background: rgba(248,247,242,.9); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-name { font-family: var(--fd); font-weight: 700; font-size: 15px; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-2); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-appstore { display: inline-flex; align-items: center; gap: 7px; background: var(--ink); color: var(--bg); border-radius: 100px; padding: 8px 18px; font-size: 12px; font-weight: 600; text-decoration: none; letter-spacing: .02em; transition: opacity .2s; }
+.nav-appstore:hover { opacity: .75; }
+.nav-appstore svg { width: 13px; height: 13px; fill: currentColor; }
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes tapFloat {
+  0%, 100% { transform: translateY(0) rotate(-8deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(-4deg) scale(1.04); }
+}
+
+/* ═══════════════════════════════════
+   HERO C - Editorial compact
+   Tight grid, oversized type, centered court image
+═══════════════════════════════════ */
+#hero-c {
+  position: relative;
+  overflow: hidden;
+  max-width: min(1360px, calc(100% - 48px));
+  min-height: 590px;
+  margin: 78px auto 0;
+  padding: 24px clamp(30px, 5vw, 72px) 32px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto auto 1fr auto;
+  gap: 12px 20px;
+  background: #FBFAF5;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 18px 70px rgba(20,18,16,.08);
+  isolation: isolate;
+}
+#hero-c::before {
+  content: '';
+  position: absolute;
+  width: clamp(360px, 37vw, 500px);
+  height: clamp(360px, 37vw, 500px);
+  left: 36%;
+  top: 88px;
+  border: 1px solid rgba(20,18,16,.11);
+  border-radius: 50%;
+  z-index: 0;
+}
+#hero-c::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: calc(36% + (clamp(360px, 37vw, 500px) / 2) - 4px);
+  top: 84px;
+  border-radius: 50%;
+  background: #C8F04A;
+  transform-origin: 4px calc((clamp(360px, 37vw, 500px) / 2) + 4px);
+  animation: orbit 16s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-c-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink-3);
+}
+.hero-c-kicker {
+  grid-column: 1 / 4;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  z-index: 1;
+}
+.hero-c-kicker .dot {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #C8F04A;
+  box-shadow: 0 0 0 5px rgba(200,240,74,.16);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.hero-c-title {
+  grid-column: 1 / 10;
+  grid-row: 2;
+  align-self: start;
+  margin-top: 34px;
+  font-family: var(--fd);
+  font-size: clamp(46px, 5.9vw, 84px);
+  font-weight: 800;
+  line-height: .92;
+  letter-spacing: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+.hero-c-title span {
+  display: block;
+}
+.hero-c-title .indent {
+  padding-left: 0;
+}
+.hero-c-title .amp {
+  display: inline;
+  color: rgba(20,18,16,.22);
+  font-weight: 800;
+}
+.hero-c-subtitle {
+  grid-column: 7 / 12;
+  grid-row: 4;
+  align-self: start;
+  justify-self: stretch;
+  --fit-max: 28;
+  --fit-min: 10;
+  width: min(100%, 520px);
+  margin-top: 16px;
+  color: var(--ink-2);
+  font-family: var(--fd);
+  font-size: calc(var(--fit-size, var(--fit-max)) * 1px);
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: visible;
+  z-index: 1;
+}
+.hero-c-media {
+  grid-column: 7 / 12;
+  grid-row: 3;
+  align-self: end;
+  justify-self: stretch;
+  width: min(100%, 520px);
+  aspect-ratio: 1.58 / 1;
+  margin-top: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--ink);
+  box-shadow: 0 18px 52px rgba(20,18,16,.16);
+  z-index: 2;
+}
+.hero-c-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  display: block;
+  filter: saturate(.95) contrast(1.05);
+}
+.hero-c-statement {
+  grid-column: 1 / 4;
+  grid-row: 3;
+  align-self: end;
+  max-width: none;
+  margin-bottom: 0;
+  color: var(--ol-800);
+  font-size: clamp(10px, 1.05vw, 14px);
+  font-weight: 700;
+  line-height: 1.75;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  white-space: normal;
+  z-index: 1;
+}
+.hero-c-statement span { display: block; }
+
+/* ═══════════════════════════════════
+   ABOUT
+═══════════════════════════════════ */
+#about { border-top: 1px solid var(--border); padding: clamp(56px,8vw,100px) var(--gutter); }
+.about-inner { max-width: var(--max); margin: 0 auto; }
+
+.about-layout-a .about-statement { max-width: 680px; margin-bottom: 40px; }
+.about-layout-a .about-persons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.about-statement {
+  font-family: var(--fd); font-size: clamp(19px, 2.1vw, 28px);
+  font-weight: 500; letter-spacing: -.025em; line-height: 1.45;
+  color: var(--ink);
+}
+.about-statement em { font-style: normal; color: var(--ol-700); }
+.about-persons { }
+.person-card {
+  display: grid; grid-template-columns: 88px 1fr; gap: 20px;
+  padding: 24px; background: white; border: 1px solid var(--border); border-radius: 16px; align-items: start;
+}
+.person-avatar { width: 88px; height: 88px; border-radius: 50%; overflow: hidden; }
+.person-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.person-tag { display: inline-block; background: var(--ol-300); color: var(--ol-800); border-radius: 6px; padding: 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 6px; }
+.person-name { font-family: var(--fd); font-size: 16px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 2px; }
+.person-cred { font-size: 12px; color: var(--ink-2); line-height: 1.5; margin-bottom: 10px; white-space: nowrap; }
+.person-link { font-size: 11px; font-weight: 600; color: var(--ol-800); text-decoration: none; border-bottom: 1.5px solid var(--ol-600); padding-bottom: 1px; letter-spacing: .03em; transition: color .2s; }
+.person-link:hover { color: var(--ink); }
+
+/* ═══════════════════════════════════
+   SMARTHIT
+═══════════════════════════════════ */
+#smarthit { background: var(--sh-bg); padding: clamp(64px,9vw,120px) var(--gutter); }
+#smarthit .eyebrow { color: rgba(206,209,154,.55); }
+#smarthit .eyebrow::before { background: rgba(206,209,154,.3); }
+
+.sh-header-a { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; margin-bottom: 44px; }
+.sh-left { display: flex; flex-direction: column; gap: 12px; }
+.sh-title-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: nowrap; min-width: 0; }
+.sh-title-logo { width: clamp(38px,4.2vw,58px); height: clamp(38px,4.2vw,58px); border-radius: 14px; object-fit: cover; flex: 0 0 auto; }
+.sh-title-big { font-family: var(--fd); font-size: clamp(36px,4.4vw,66px); font-weight: 800; letter-spacing: -.04em; line-height: .95; color: white; white-space: nowrap; }
+.sh-title-muted { color: white; font-size: .72em; font-weight: 400; letter-spacing: -.035em; white-space: nowrap; }
+.sh-title-sub { font-size: clamp(15px,1.4vw,19px); color: var(--ol-600); font-weight: 300; }
+.sh-desc-block { font-size: 14px; color: rgba(255,255,255,.38); max-width: 280px; line-height: 1.75; }
+
+.btn-appstore-dark { display: inline-flex; align-items: center; gap: 12px; background: white; color: var(--ink); border-radius: 14px; padding: 12px 22px; text-decoration: none; transition: opacity .2s; flex-shrink: 0; }
+.btn-appstore-dark:hover { opacity: .82; }
+.btn-appstore-dark svg { width: 22px; height: 22px; fill: var(--ink); flex-shrink: 0; }
+.bat-t { display: flex; flex-direction: column; }
+.bat-t .sm { font-size: 9px; opacity: .55; line-height: 1; letter-spacing: .05em; text-transform: uppercase; }
+.bat-t .lg { font-size: 15px; font-weight: 700; line-height: 1.2; }
+
+.sh-banner { max-width: var(--max); margin: 0 auto 44px; border-radius: 20px; overflow: hidden; box-shadow: 0 28px 72px rgba(0,0,0,.45); }
+.sh-banner img { width: 100%; display: block; }
+
+.sh-stats { max-width: var(--max); margin: 0 auto 44px; display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; overflow: hidden; }
+.sh-stat { padding: 26px 22px; border-right: 1px solid rgba(255,255,255,.08); }
+.sh-stat:last-child { border-right: none; }
+.sh-stat .num { font-family: var(--fd); font-size: clamp(26px,3vw,42px); font-weight: 800; color: white; line-height: 1; letter-spacing: -.03em; margin-bottom: 5px; }
+.sh-stat .num span { color: var(--ol-500); }
+.sh-stat .lbl { font-size: 11px; color: rgba(255,255,255,.38); letter-spacing: .03em; line-height: 1.4; }
+
+.sh-cta-row { max-width: var(--max); margin: 0 auto 44px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.sh-cta-note { font-size: 12px; color: rgba(255,255,255,.28); }
+.sh-click-hand {
+  width: clamp(70px, 8vw, 112px);
+  height: auto;
+  margin-left: -6px;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 18px rgba(200,240,74,.2));
+  transform-origin: 50% 78%;
+  animation: tapFloat 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+/* video */
+.sh-video { max-width: var(--max); margin: 0 auto 44px; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+.sh-video iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* reviews — horizontal scroll */
+.sh-reviews-wrap { max-width: var(--max); margin: 0 auto; }
+.sh-reviews-label { margin-bottom: 20px; }
+.reviews-scroll {
+  display: flex; gap: 14px;
+  overflow-x: auto; padding-bottom: 16px;
+  scrollbar-width: none; cursor: grab;
+}
+.reviews-scroll::-webkit-scrollbar { display: none; }
+.reviews-scroll.dragging { cursor: grabbing; user-select: none; }
+.review-card {
+  flex: 0 0 300px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px; padding: 22px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.review-stars { color: var(--ol-500); font-size: 12px; letter-spacing: 2px; display: inline-flex; gap: 2px; align-items: center; }
+.star-half {
+  position: relative;
+  display: inline-block;
+  color: rgba(206,209,154,.34);
+  width: 1em;
+}
+.star-half::before {
+  content: '★';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 50%;
+  overflow: hidden;
+  color: var(--ol-500);
+}
+.review-text { font-size: 14px; color: rgba(255,255,255,.82); line-height: 1.65; flex: 1; }
+.review-original { font-size: 11px; color: rgba(255,255,255,.26); font-style: italic; }
+.review-source { display: inline-block; background: rgba(255,255,255,.07); border-radius: 6px; padding: 2px 9px; font-size: 10px; font-weight: 700; color: var(--ol-500); letter-spacing: .06em; text-transform: uppercase; }
+
+/* ═══════════════════════════════════
+   JOURNEY
+═══════════════════════════════════ */
+#journey { background: var(--ol-300); padding: clamp(64px,9vw,120px) var(--gutter); }
+.journey-inner { max-width: var(--max); margin: 0 auto; }
+.journey-header { margin-bottom: 56px; }
+.journey-header h2 { font-family: var(--fd); font-size: clamp(34px,4.2vw,58px); font-weight: 700; letter-spacing: -.04em; line-height: 1.0; margin-top: 14px; }
+
+.timeline { display: flex; flex-direction: column; }
+.tl-node { display: grid; grid-template-columns: 130px 1px 1fr; gap: 0 36px; padding: 48px 0; border-top: 1px solid rgba(110,112,97,.25); align-items: start; }
+.tl-node:last-child { border-bottom: 1px solid rgba(110,112,97,.25); }
+.tl-date { font-family: var(--fd); font-size: 12px; font-weight: 700; color: var(--ol-800); letter-spacing: .04em; padding-top: 4px; text-align: right; line-height: 1.5; }
+.tl-line { width: 1px; background: rgba(110,112,97,.3); align-self: stretch; position: relative; margin-top: 6px; }
+.tl-dot { position: absolute; top: 0; left: 50%; transform: translate(-50%,0); width: 9px; height: 9px; border-radius: 50%; background: var(--ol-700); border: 2px solid var(--ol-300); }
+.tl-tag { display: inline-flex; align-items: center; background: var(--ol-400); border-radius: 100px; padding: 3px 12px; font-size: 10px; font-weight: 700; color: var(--ol-800); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; }
+.tl-title { font-family: var(--fd); font-size: clamp(19px,2vw,26px); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; margin-bottom: 10px; }
+.tl-body { font-size: 14px; color: var(--ol-800); line-height: 1.75; max-width: 500px; margin-bottom: 20px; }
+.tl-link { display: inline-block; font-size: 12px; font-weight: 600; color: var(--ol-800); letter-spacing: .04em; text-decoration: none; border-bottom: 1.5px solid var(--ol-700); padding-bottom: 1px; transition: color .2s; }
+.tl-link:hover { color: var(--ink); }
+
+/* LD carousel */
+.ld-carousel { position: relative; max-width: 540px; margin-bottom: 16px; }
+.ld-slides { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; background: var(--ol-400); }
+.ld-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .4s; }
+.ld-slide.active { opacity: 1; }
+.ld-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ld-slide-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--ol-400); }
+.ld-slide-placeholder span { font-size: 11px; color: var(--ol-700); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.ld-dots { display: flex; gap: 7px; justify-content: center; margin-top: 12px; }
+.ld-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ol-600); border: none; cursor: pointer; transition: background .2s, transform .2s; padding: 0; }
+.ld-dot.active { background: var(--ol-800); transform: scale(1.25); }
+
+/* single photo */
+.tl-photo-single { border-radius: 14px; overflow: hidden; max-width: 540px; box-shadow: 0 8px 32px rgba(0,0,0,.08); margin-bottom: 16px; }
+.tl-photo-single img { width: 100%; display: block; }
+
+/* ═══════════════════════════════════
+   CONTACT
+═══════════════════════════════════ */
+#contact { padding: clamp(64px,9vw,112px) var(--gutter); }
+.contact-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
+.contact-left h2 { font-family: var(--fd); font-size: clamp(38px,5vw,66px); font-weight: 800; letter-spacing: -.04em; line-height: .95; margin-bottom: 18px; }
+.contact-left h2 em { font-style: normal; color: var(--ol-700); }
+.contact-blurb { font-size: 15px; color: var(--ink-2); line-height: 1.7; max-width: 360px; }
+.contact-links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contact-link { display: flex; flex-direction: column; gap: 3px; padding: 18px 20px; background: white; border: 1px solid var(--border); border-radius: 14px; text-decoration: none; transition: border-color .2s, background .2s; }
+button.contact-link { width: 100%; font: inherit; text-align: left; cursor: pointer; }
+.contact-link:hover { border-color: var(--ol-600); background: var(--ol-200); }
+.cl-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.cl-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.cl-arrow { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+
+/* ─── FOOTER ─── */
+footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.footer-logo { display: flex; align-items: center; gap: 10px; }
+.footer-logo img { height: 22px; }
+.footer-logo span { font-family: var(--fd); font-size: 14px; font-weight: 700; letter-spacing: -.02em; }
+.footer-copy { font-size: 12px; color: var(--ink-3); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  #hero-c {
+    max-width: calc(100% - 28px);
+    margin-top: 72px;
+    min-height: auto;
+  }
+  .hero-c-title {
+    grid-column: 1 / 10;
+    font-size: 62px;
+  }
+  .hero-c-subtitle {
+    grid-column: 6 / 12;
+  }
+  .hero-c-media {
+    grid-column: 6 / 12;
+  }
+  .hero-c-statement {
+    grid-column: 1 / 4;
+    font-size: 30px;
+  }
+  .about-persons { grid-template-columns: 1fr; }
+  .sh-header-a { grid-template-columns: 1fr; }
+  .sh-stats { grid-template-columns: repeat(2,1fr); }
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  .tl-node { grid-template-columns: 90px 1px 1fr; gap: 0 24px; }
+}
+@media (max-width: 640px) {
+  #hero-c {
+    max-width: calc(100% - 18px);
+    padding: 24px 18px 30px;
+  }
+  #hero-c {
+    min-height: 430px;
+    background: #FBFAF5;
+  }
+  #hero-c::before,
+  #hero-c::after {
+    width: 280px;
+    height: 280px;
+    left: 40%;
+    top: 86px;
+  }
+  #hero-c::after {
+    width: 6px;
+    height: 6px;
+    left: calc(40% + 140px - 3px);
+    top: 83px;
+    transform-origin: 3px 143px;
+  }
+  .hero-c-title {
+    grid-column: 1 / 10;
+    font-size: 28px;
+    line-height: .94;
+    margin-top: 24px;
+  }
+  .hero-c-media {
+    grid-column: 6 / 12;
+    grid-row: 3;
+    width: 100%;
+    margin-top: 0;
+    aspect-ratio: 1.58 / 1;
+  }
+  .hero-c-subtitle {
+    grid-column: 6 / 12;
+    grid-row: 4;
+    --fit-max: 11;
+    --fit-min: 5;
+    width: 100%;
+    white-space: nowrap;
+  }
+  .hero-c-statement {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    margin-bottom: 0;
+    font-size: 6px;
+    line-height: 1.7;
+    letter-spacing: .16em;
+    white-space: normal;
+  }
+  .hero-c-title .indent {
+    padding-left: 0;
+  }
+  .nav-links { display: none; }
+  .tl-node { grid-template-columns: 64px 1px 1fr; gap: 0 16px; }
+  .contact-links { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="#">Xiao LU (Lucio) &amp; Yiran WANG (Damiao)</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#smarthit">Work</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-appstore" href="https://apps.apple.com/app/id6751442505" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    SmartHit App
+  </a>
+</nav>
+
+<!-- ════ HERO C - Compact ════ -->
+<div id="hero-c">
+  <div class="hero-c-kicker"><span class="dot"></span>In a nutshell</div>
+
+  <h1 class="hero-c-title">
+    <span>Xiao Lu (Lucio)</span>
+    <span class="indent"><span class="amp">&amp;</span> Yiran Wang (Damiao)</span>
+  </h1>
+
+  <p class="hero-c-subtitle">Deep understanding beats brute computing.</p>
+
+  <div class="hero-c-media">
+    <img src="uploads/1dcefdbe42fa187b3e92168390ed9e1f 2.jpg" alt="Xiao LU and Yiran WANG on a tennis court">
+  </div>
+
+  <p class="hero-c-statement"><span>architects.</span><span>artists.</span><span>builders.</span></p>
+</div>
+
+<!-- ════ ABOUT ════ -->
+<section id="about">
+  <div class="about-inner">
+    <div class="eyebrow" style="margin-bottom:22px;">About</div>
+    <div class="about-layout-a">
+    <p class="about-statement">We build things where <em>design intuition</em> meets <em>technical depth</em> — and we genuinely love tennis.</p>
+    <div class="about-persons">
+      <div class="person-card">
+        <div class="person-avatar"><img src="uploads/lx-profile.jpg" alt="Xiao LU"></div>
+        <div>
+          <div class="person-tag">Thinker & Hacker</div>
+          <div class="person-name">Xiao Lu (Lucio)</div>
+          <div class="person-cred">UCL Bartlett · Deep Learning · Pattern Recognition</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <div class="person-avatar"><img src="uploads/yw-profile.jpg" alt="Yiran WANG"></div>
+        <div>
+          <div class="person-tag">Perceiver & Connector</div>
+          <div class="person-name">Yiran Wang (Damiao)</div>
+          <div class="person-cred">Harvard GSD · Interface Craft · Balance Under Tension</div>
+          <a href="#" class="person-link" target="_blank">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+    </div><!-- /about-layout -->
+  </div>
+</section>
+
+<!-- ════ SMARTHIT ════ -->
+<section id="smarthit">
+
+  <div class="sh-header-a">
+    <div class="sh-left">
+      <div class="eyebrow" style="margin-bottom:4px;">Featured Project</div>
+      <div class="sh-title-row">
+        <img class="sh-title-logo" src="uploads/app_icon.png" alt="SmartHit logo">
+        <div class="sh-title-big">SmartHit - <span class="sh-title-muted">AI Tennis Coach</span></div>
+      </div>
+      <div class="sh-title-sub">Tennis intelligence, in your pocket.</div>
+    </div>
+    <div class="sh-desc-block">Auto-clips every rally, visualises ball trails, builds your game history — with just an iPhone. Download now, game on!</div>
+  </div>
+
+  <div class="sh-banner"><img src="uploads/Banner_EN.jpg" alt="SmartHit App"></div>
+
+  <div class="sh-stats">
+    <div class="sh-stat"><div class="num">5,000<span>+</span></div><div class="lbl">Downloads</div></div>
+    <div class="sh-stat"><div class="num">90<span>%+</span></div><div class="lbl">Segmentation accuracy</div></div>
+    <div class="sh-stat"><div class="num"><span>1</span> iPhone</div><div class="lbl">On-device analysis</div></div>
+    <div class="sh-stat"><div class="num">$<span>0</span></div><div class="lbl">Marketing spend</div></div>
+  </div>
+
+  <div class="sh-cta-row">
+    <a href="https://apps.apple.com/app/id6751442505" class="btn-appstore-dark" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div class="bat-t"><span class="sm">Download on the</span><span class="lg">App Store</span></div>
+    </a>
+    <img class="sh-click-hand" src="uploads/click2.png" alt="" aria-hidden="true">
+    <span class="sh-cta-note">Free · iOS · Available worldwide</span>
+  </div>
+
+  <div class="sh-video">
+    <iframe src="https://www.youtube.com/embed/ZSIKdC6t7E0" title="SmartHit Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <div class="sh-reviews-wrap">
+    <div class="sh-reviews-label"><div class="eyebrow">User Reviews</div></div>
+    <div class="reviews-scroll" id="reviewsScroll">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The segmentation is spot-on 👍👍"</p>
+        <p class="review-original">「剪得很准 👍👍」</p>
+        <span class="review-source">App Store Review</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"When's the next feature dropping? I'll happily pay for it!"</p>
+        <p class="review-original">「啥时出新功能，我愿意付费！」</p>
+        <span class="review-source">WeChat Group User Review</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-label="4.5 out of 5 stars">★★★★<span class="star-half">☆</span></div>
+        <p class="review-text">"30 rallies auto-split and sorted — saves so much time. Can't wait for the shot landing analysis!"</p>
+        <p class="review-original">「30个回合自动分好，太省时间！期待分析落点功能！」</p>
+        <span class="review-source">Xiaohongshu User Review</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Love the trajectory trail effects — please add more styles! 🙏"</p>
+        <p class="review-original">「好喜欢轨迹特效功能，多出几个吧🙏」</p>
+        <span class="review-source">WeChat Group User Review</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Been using it every session — so convenient!"</p>
+        <p class="review-original">「用上了，好方便！」</p>
+        <span class="review-source">Xiaohongshu User Review</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Exported our best rallies right after playing and posted to TikTok — so cool, and such a time-saver!"</p>
+        <p class="review-original">「和闺蜜打完球直接导出精彩回合，发tiktok 特别酷炫！省时间神器」</p>
+        <span class="review-source">App Store Review</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════ JOURNEY ════ -->
+<section id="journey">
+  <div class="journey-inner">
+    <div class="journey-header">
+      <div class="eyebrow">Our Journey</div>
+      <h2>Designed. Coded. Shipped.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-node">
+        <div class="tl-date">2014 – 2024</div>
+        <div class="tl-line"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-tag">Architecture</div>
+          <div class="tl-title">Spatial thinking under real constraints</div>
+          <p class="tl-body">Both trained in architecture, we carried projects from brief to construction sites across Asia, Europe, and Africa. From brief to site, our built work taught us to design under real constraints, coordinate execution, and make ideas survive contact with the world.</p>
+          <div class="tl-photo-single">
+            <img src="uploads/burundi site.png" alt="Architecture project construction site in Burundi">
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-node">
+        <div class="tl-date">2021 – now</div>
+        <div class="tl-line"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-tag">Generative Art</div>
+          <div class="tl-title">Lucio+Damiao — 5 cities across Asia</div>
+          <p class="tl-body">We exhibited generative art installations across Shibuya, Taipei, and beyond — exploring tension between algorithmic precision and physical craft. The driving force behind our artistic creation is the exploration of profound connections between seemingly disparate phenomena.</p>
+
+          <div class="ld-carousel">
+            <div class="ld-slides" id="ldSlides">
+              <div class="ld-slide active">
+                <img src="uploads/Lucio+Damiao profile.png" alt="Lucio+Damiao exhibition">
+              </div>
+              <div class="ld-slide">
+                <img src="uploads/art02.jpg" alt="Lucio+Damiao generative artwork">
+              </div>
+              <div class="ld-slide">
+                <img src="uploads/art03.jpeg" alt="Lucio+Damiao generative artwork">
+              </div>
+              <div class="ld-slide">
+                <img src="uploads/art04.jpg" alt="Lucio+Damiao generative artwork">
+              </div>
+              <div class="ld-slide">
+                <img src="uploads/art05.jpg" alt="Lucio+Damiao generative artwork">
+              </div>
+              <div class="ld-slide">
+                <img src="uploads/art06.jpg" alt="Lucio+Damiao generative artwork">
+              </div>
+            </div>
+            <div class="ld-dots" id="ldDots"></div>
+          </div>
+
+          <a href="https://studionano.co/collections/l-d-1" class="tl-link" target="_blank">studionano.co/collections/l-d-1 ↗</a>
+        </div>
+      </div>
+
+      <div class="tl-node">
+        <div class="tl-date">2024 – now</div>
+        <div class="tl-line"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-tag">SmartHit Tennis</div>
+          <div class="tl-title">5,000+ users. Zero marketing.</div>
+          <p class="tl-body">We combined Xiao's deep learning expertise with Yiran's product and frontend craft to build SmartHit — a tennis AI app that auto-clips rallies and visualises trajectories entirely on-device.</p>
+          <div class="tl-photo-single">
+            <img src="uploads/IMG_4296.PNG" alt="SmartHit Tennis app interface">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT ════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Let's build<br><em>together.</em></h2>
+      <p class="contact-blurb">We're looking for the right environment to accelerate SmartHit — and to keep building things at the intersection of sport, design, and AI.</p>
+    </div>
+    <div class="contact-links">
+      <button class="contact-link" type="button" data-copy="luxiao0206"><span class="cl-label">WeChat</span><span class="cl-name">Xiao LU (Lucio)</span><span class="cl-arrow">luxiao0206</span></button>
+      <a href="https://www.linkedin.com/in/yiranw/" class="contact-link" target="_blank"><span class="cl-label">LinkedIn</span><span class="cl-name">Yiran WANG (Damiao)</span><span class="cl-arrow">↗</span></a>
+      <a href="https://apps.apple.com/app/id6751442505" class="contact-link" target="_blank"><span class="cl-label">App Store</span><span class="cl-name">SmartHit Tennis</span><span class="cl-arrow">↗</span></a>
+      <a href="mailto:info@xiaotiantian.tech" class="contact-link"><span class="cl-label">Email</span><span class="cl-name">info@xiaotiantian.tech</span><span class="cl-arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <img src="uploads/app_logo.png" alt="SmartHit">
+    <span>SmartHit Tennis</span>
+  </div>
+  <div class="footer-copy">Xiao LU & Yiran WANG</div>
+</footer>
+
+<!-- ════ CAROUSEL JS ════ -->
+<script>
+(function() {
+  const slides = document.querySelectorAll('#ldSlides .ld-slide');
+  const dotsEl = document.getElementById('ldDots');
+  let cur = 0;
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'ld-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+  function goTo(idx) {
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur = idx;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+  }
+  // auto-advance
+  setInterval(() => goTo((cur + 1) % slides.length), 3500);
+})();
+</script>
+
+<!-- ════ REVIEWS DRAG SCROLL ════ -->
+<script>
+(function() {
+  const el = document.getElementById('reviewsScroll');
+  if (!el) return;
+  let isDown = false, startX, scrollLeft;
+  el.addEventListener('mousedown', e => { isDown = true; el.classList.add('dragging'); startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
+  el.addEventListener('mouseleave', () => { isDown = false; el.classList.remove('dragging'); });
+  el.addEventListener('mouseup', () => { isDown = false; el.classList.remove('dragging'); });
+  el.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX); });
+})();
+</script>
+
+<!-- ════ CONTACT COPY ════ -->
+<script>
+(function() {
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    const original = btn.querySelector('.cl-arrow')?.textContent || 'Copy';
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(value);
+        const label = btn.querySelector('.cl-arrow');
+        if (label) {
+          label.textContent = 'Copied';
+          setTimeout(() => { label.textContent = original; }, 1600);
+        }
+      } catch (_) {
+        window.prompt('Copy WeChat ID', value);
+      }
+    });
+  });
+})();
+</script>
+
+<!-- ════ FIT HERO LINE ════ -->
+<script>
+(function() {
+  const el = document.querySelector('.hero-c-subtitle');
+  if (!el) return;
+
+  function fitLine() {
+    const styles = getComputedStyle(el);
+    const max = parseFloat(styles.getPropertyValue('--fit-max')) || 28;
+    const min = parseFloat(styles.getPropertyValue('--fit-min')) || 10;
+    const target = el.clientWidth;
+    if (!target) return;
+
+    el.style.setProperty('--fit-size', max);
+    const natural = el.scrollWidth;
+    const fitted = natural > target ? Math.max(min, max * target / natural) : max;
+    el.style.setProperty('--fit-size', fitted.toFixed(2));
+  }
+
+  window.addEventListener('resize', fitLine);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLine);
+  requestAnimationFrame(fitLine);
+})();
+</script>
+
+</body>
+</html>
