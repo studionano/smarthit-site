@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Xiao LU & Yiran WANG</title>
+<title>击智网球 | SmartHit Tennis</title>
 <link rel="icon" type="image/png" sizes="32x32" href="uploads/favicon-32.png">
 <link rel="apple-touch-icon" href="uploads/app_logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +27,7 @@
   --sh-bg:   #18160F;
   --fd: 'Bricolage Grotesque', sans-serif;
   --fb: 'Space Grotesk', sans-serif;
+  --fcn: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
   --max: 1160px;
   --gutter: clamp(20px, 5vw, 80px);
 }
@@ -54,6 +55,415 @@ nav {
 .nav-appstore:hover { opacity: .75; }
 .nav-appstore svg { width: 13px; height: 13px; fill: currentColor; }
 
+/* ─── LANGUAGE SWITCH ─── */
+.lang-switch {
+  position: fixed;
+  top: 18px;
+  right: var(--gutter);
+  z-index: 260;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(248,247,242,.9);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 28px rgba(20,18,16,.08);
+}
+.lang-btn {
+  border: none;
+  background: transparent;
+  color: var(--ink-3);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-family: var(--fd);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+body[data-lang="zh"] .lang-btn[data-lang="zh"],
+body[data-lang="en"] .lang-btn[data-lang="en"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+body[data-lang="en"] .lang-switch {
+  right: calc(var(--gutter) + 188px);
+}
+.page { min-height: 100vh; }
+body[data-lang="zh"] #page-en { display: none; }
+body[data-lang="en"] #page-zh { display: none; }
+
+/* ─── CHINESE PAGE ─── */
+#page-zh {
+  font-family: var(--fcn);
+  color: var(--ink);
+  background: var(--bg);
+}
+.cn-product {
+  background: var(--sh-bg);
+  color: white;
+  padding: 92px var(--gutter) 48px;
+}
+.cn-product-inner,
+.cn-coach-inner,
+.cn-detail-inner,
+.cn-footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.cn-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(206,209,154,.72);
+}
+.cn-eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: rgba(206,209,154,.4);
+}
+.cn-product-header {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+  gap: 36px;
+  align-items: end;
+}
+.cn-product-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.cn-product-logo {
+  width: clamp(48px, 4.6vw, 62px);
+  height: clamp(48px, 4.6vw, 62px);
+  border-radius: 16px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.cn-product-title {
+  font-family: var(--fcn);
+  font-size: clamp(34px, 4.6vw, 62px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.03em;
+}
+.cn-product-title small {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: .42em;
+  font-weight: 500;
+  color: rgba(255,255,255,.72);
+}
+.cn-product-subtitle {
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: var(--ol-500);
+  line-height: 1.6;
+}
+.cn-product-copy {
+  font-size: 14px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.85;
+}
+.cn-note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,.38);
+}
+.cn-feature-list {
+  margin: 28px 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.cn-feature-pill {
+  padding: 12px 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,.86);
+}
+.cn-feature-pill small {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: rgba(255,255,255,.42);
+  line-height: 1.4;
+}
+.cn-product-banner {
+  margin-top: 28px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 28px 72px rgba(0,0,0,.35);
+}
+.cn-product-banner img {
+  width: 100%;
+  display: block;
+}
+.cn-product-stats {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.cn-stat {
+  padding: 22px 20px;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+.cn-stat:last-child { border-right: none; }
+.cn-stat-num {
+  font-family: var(--fd);
+  font-size: clamp(25px, 2.6vw, 38px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: white;
+  margin-bottom: 6px;
+}
+.cn-stat-num span { color: var(--ol-500); }
+.cn-stat-label {
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.42);
+}
+.cn-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: opacity .2s, background .2s, color .2s, border-color .2s;
+}
+.cn-btn:hover { opacity: .84; }
+.cn-btn-primary {
+  background: white;
+  color: var(--ink);
+}
+.cn-btn-secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,.22);
+}
+.cn-coach,
+.cn-detail,
+.cn-footer {
+  padding: 44px var(--gutter);
+}
+.cn-coach { background: #FBFAF5; }
+.cn-detail { background: white; border-top: 1px solid var(--border); }
+.cn-footer { background: #F4F2EA; border-top: 1px solid var(--border); }
+.cn-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+.cn-section-title {
+  font-family: var(--fcn);
+  font-size: clamp(30px, 3.6vw, 46px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -.03em;
+  margin-top: 14px;
+}
+.cn-title-with-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cn-coming-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--ol-300);
+  color: var(--ol-800);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+.cn-section-copy {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.85;
+}
+.cn-coach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.coach-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(20,18,16,.05);
+}
+.coach-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.coach-avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ol-500), var(--ol-700));
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fd);
+  font-size: 24px;
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+.coach-name {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.coach-city {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.coach-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.coach-tag {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--ol-200);
+  color: var(--ol-800);
+  font-size: 11px;
+  font-weight: 700;
+}
+.coach-cert {
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.coach-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+.cn-detail-card {
+  display: grid;
+  grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr);
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: #FCFBF6;
+}
+.cn-detail-aside {
+  padding: 8px 0;
+}
+.cn-detail-chip {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--ol-300);
+  color: var(--ol-800);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.cn-detail-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.cn-detail-text,
+.cn-detail-note {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+.cn-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cn-detail-item {
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.cn-detail-item strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+}
+.cn-footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: end;
+}
+.cn-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cn-footer-brand img {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.cn-footer-brand div {
+  font-family: var(--fcn);
+  font-size: 20px;
+  font-weight: 800;
+}
+.cn-footer-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+.cn-footer-lines b { color: var(--ink); }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
 @keyframes orbit {
   from { transform: rotate(0deg); }
@@ -387,6 +797,18 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 960px) {
+  .cn-product-header,
+  .cn-section-head,
+  .cn-footer-inner,
+  .cn-detail-card {
+    grid-template-columns: 1fr;
+  }
+  .cn-feature-list,
+  .cn-product-stats,
+  .cn-coach-grid,
+  .cn-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   #hero-c {
     max-width: calc(100% - 28px);
     margin-top: 72px;
@@ -413,6 +835,34 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
   .tl-node { grid-template-columns: 90px 1px 1fr; gap: 0 24px; }
 }
 @media (max-width: 640px) {
+  .lang-switch {
+    top: 14px;
+    right: 16px;
+  }
+  body[data-lang="en"] .lang-switch {
+    right: 16px;
+  }
+  .cn-product {
+    padding-top: 86px;
+  }
+  .cn-product-title-row {
+    align-items: flex-start;
+  }
+  .cn-product-title small {
+    display: block;
+    margin: 8px 0 0;
+  }
+  .cn-feature-list,
+  .cn-product-stats,
+  .cn-coach-grid,
+  .cn-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .cn-coach,
+  .cn-detail,
+  .cn-footer {
+    padding: 34px 18px;
+  }
   #hero-c {
     max-width: calc(100% - 18px);
     padding: 24px 18px 30px;
@@ -474,7 +924,136 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
 }
 </style>
 </head>
-<body>
+<body data-lang="zh">
+
+<div class="lang-switch" aria-label="Language switch">
+  <button class="lang-btn" type="button" data-lang="zh">中</button>
+  <button class="lang-btn" type="button" data-lang="en">EN</button>
+</div>
+
+<div id="page-zh" class="page page-zh">
+  <section class="cn-product">
+    <div class="cn-product-inner">
+      <div class="cn-eyebrow">Featured Product</div>
+      <div class="cn-product-header">
+        <div>
+          <div class="cn-product-title-row">
+            <img class="cn-product-logo" src="uploads/app_icon.png" alt="击智网球">
+            <div class="cn-product-title">击智网球<small>AI 网球训练辅助工具</small></div>
+          </div>
+          <div class="cn-product-subtitle">通过手机拍摄，自动切分回合、生成球路轨迹，并沉淀训练记录，帮助用户复盘训练与比赛表现。“找教练”板块即将上线，提供教练信息展示与入驻发布服务。</div>
+          <div class="cn-feature-list">
+            <div class="cn-feature-pill">自动切分精彩回合</div>
+            <div class="cn-feature-pill">球路与轨迹可视化</div>
+            <div class="cn-feature-pill">训练记录归档与查看</div>
+            <div class="cn-feature-pill">教练信息展示与入驻发布<small>即将上线</small></div>
+          </div>
+        </div>
+        <div>
+          <p class="cn-product-copy">“击智网球”是一款面向网球训练辅助、比赛复盘及找教练场景的产品，主要为用户提供视频切分、球路轨迹展示、训练记录留存，以及教练信息展示、教练入驻发布等信息服务内容，用于帮助用户更高效地理解训练表现，并查看平台入驻网球教练信息与服务介绍（即将上线）。</p>
+        </div>
+      </div>
+
+      <div class="cn-product-banner"><img src="uploads/Banner_EN.jpg" alt="击智网球功能示意"></div>
+
+      <div class="cn-product-stats">
+        <div class="cn-stat"><div class="cn-stat-num">5,000<span>+</span></div><div class="cn-stat-label">累计下载量</div></div>
+        <div class="cn-stat"><div class="cn-stat-num">90<span>%+</span></div><div class="cn-stat-label">回合切分准确率</div></div>
+        <div class="cn-stat"><div class="cn-stat-num"><span>1</span> 台 iPhone</div><div class="cn-stat-label">即可完成主要分析流程</div></div>
+        <div class="cn-stat"><div class="cn-stat-num"><span>0</span> 额外硬件</div><div class="cn-stat-label">无需额外穿戴或传感设备</div></div>
+      </div>
+
+      <div class="cn-actions">
+        <a class="cn-btn cn-btn-primary" href="https://apps.apple.com/app/id6751442505" target="_blank">下载 iOS 版</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="coach-cn" class="cn-coach">
+    <div class="cn-coach-inner">
+      <div class="cn-section-head">
+        <div>
+          <div class="cn-eyebrow" style="color: var(--ol-800);">功能模块</div>
+          <div class="cn-title-with-badge">
+            <h2 class="cn-section-title">找教练</h2>
+            <span class="cn-coming-badge">即将上线</span>
+          </div>
+        </div>
+        <p class="cn-section-copy">用户可在平台查看网球教练信息，了解擅长方向、教学特点及服务介绍。该功能即将上线，当前页面展示为入驻教练展示示意。</p>
+      </div>
+
+      <div class="cn-coach-grid">
+        <article class="coach-card">
+          <div class="coach-head">
+            <div class="coach-avatar">张</div>
+            <div>
+              <div class="coach-name">张教练</div>
+              <div class="coach-city">上海</div>
+            </div>
+          </div>
+          <div class="coach-meta">
+            <span class="coach-tag">青少年启蒙</span>
+            <span class="coach-tag">步伐训练</span>
+          </div>
+          <div class="coach-cert">认证教练 · 教龄 8 年</div>
+          <p class="coach-desc">前省队队员，专注青少年基础动作打磨。</p>
+        </article>
+
+        <article class="coach-card">
+          <div class="coach-head">
+            <div class="coach-avatar">李</div>
+            <div>
+              <div class="coach-name">李教练</div>
+              <div class="coach-city">北京</div>
+            </div>
+          </div>
+          <div class="coach-meta">
+            <span class="coach-tag">成人入门</span>
+            <span class="coach-tag">发球专项</span>
+          </div>
+          <div class="coach-cert">推荐教练 · 教龄 6 年</div>
+          <p class="coach-desc">擅长零基础上手，注重击球节奏感培养。</p>
+        </article>
+
+        <article class="coach-card">
+          <div class="coach-head">
+            <div class="coach-avatar">王</div>
+            <div>
+              <div class="coach-name">王教练</div>
+              <div class="coach-city">深圳</div>
+            </div>
+          </div>
+          <div class="coach-meta">
+            <span class="coach-tag">比赛提高</span>
+            <span class="coach-tag">战术训练</span>
+          </div>
+          <div class="coach-cert">认证教练 · 教龄 10 年</div>
+          <p class="coach-desc">ITF 认证教练，多名学员获市级赛事名次。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="cn-footer">
+    <div class="cn-footer-inner">
+      <div>
+        <div class="cn-footer-brand">
+          <img src="uploads/app_logo.png" alt="击智网球">
+          <div>击智网球</div>
+        </div>
+        <div class="cn-footer-lines">
+          <div><b>公司名称：</b>晓田田文化科技（上海）有限公司</div>
+          <div><b>联系方式：</b>info@xiaotiantian.tech</div>
+          <div><b>ICP备案/许可证号：</b>沪ICP备2025142696号</div>
+          <div><b>服务备案号：</b>沪ICP备2025142696号-1A</div>
+          <div><b>服务名称：</b>击智网球</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="page-en" class="page page-en">
 
 <!-- NAV -->
 <nav>
@@ -718,6 +1297,8 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
   <div class="footer-copy">Xiao LU & Yiran WANG</div>
 </footer>
 
+</div>
+
 <!-- ════ CAROUSEL JS ════ -->
 <script>
 (function() {
@@ -799,6 +1380,28 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
   window.addEventListener('resize', fitLine);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLine);
   requestAnimationFrame(fitLine);
+})();
+</script>
+
+<!-- ════ LANGUAGE TOGGLE ════ -->
+<script>
+(function() {
+  const body = document.body;
+  const html = document.documentElement;
+  const titleEl = document.querySelector('title');
+  const zhTitle = '击智网球 | SmartHit Tennis';
+  const enTitle = 'Xiao LU & Yiran WANG';
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang === 'en' ? 'en' : 'zh';
+      body.dataset.lang = lang;
+      html.lang = lang === 'en' ? 'en' : 'zh-CN';
+      if (titleEl) titleEl.textContent = lang === 'en' ? enTitle : zhTitle;
+      window.dispatchEvent(new Event('resize'));
+      window.scrollTo(0, 0);
+    });
+  });
 })();
 </script>
 
