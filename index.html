@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>击智网球 | SmartHit Tennis</title>
+<title>Xiao LU & Yiran WANG</title>
 <link rel="icon" type="image/png" sizes="32x32" href="uploads/favicon-32.png">
 <link rel="apple-touch-icon" href="uploads/app_logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,45 +55,86 @@ nav {
 .nav-appstore:hover { opacity: .75; }
 .nav-appstore svg { width: 13px; height: 13px; fill: currentColor; }
 
-/* ─── LANGUAGE SWITCH ─── */
-.lang-switch {
-  position: fixed;
-  top: 18px;
-  right: var(--gutter);
-  z-index: 260;
-  display: inline-flex;
-  gap: 4px;
-  padding: 4px;
-  background: rgba(248,247,242,.9);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 10px 28px rgba(20,18,16,.08);
-}
-.lang-btn {
-  border: none;
-  background: transparent;
-  color: var(--ink-3);
-  border-radius: 999px;
-  padding: 7px 13px;
-  font-family: var(--fd);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .04em;
-  cursor: pointer;
-  transition: background .2s, color .2s;
-}
-body[data-lang="zh"] .lang-btn[data-lang="zh"],
-body[data-lang="en"] .lang-btn[data-lang="en"] {
-  background: var(--ink);
-  color: var(--bg);
-}
-body[data-lang="en"] .lang-switch {
-  right: calc(var(--gutter) + 188px);
-}
 .page { min-height: 100vh; }
-body[data-lang="zh"] #page-en { display: none; }
-body[data-lang="en"] #page-zh { display: none; }
+#page-zh { display: none !important; }
+
+/* ─── INTRO GATE ─── */
+body.intro-active { overflow: hidden; }
+.intro-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: #050507;
+  color: white;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .7s ease, visibility .7s ease;
+}
+body.intro-dismissed .intro-gate {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.intro-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+.intro-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding:
+    max(42px, env(safe-area-inset-top))
+    max(42px, env(safe-area-inset-right))
+    max(42px, env(safe-area-inset-bottom))
+    max(42px, env(safe-area-inset-left));
+  background:
+    linear-gradient(180deg, rgba(5,5,7,.02) 0%, rgba(5,5,7,.08) 56%, rgba(5,5,7,.22) 100%);
+}
+.intro-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.intro-kicker {
+  display: none;
+}
+.intro-title {
+  display: none;
+}
+.intro-copy {
+  display: none;
+}
+.intro-enter {
+  appearance: none;
+  border: 1px solid rgba(227,226,218,.16);
+  background: rgba(248,247,242,.94);
+  color: var(--ink);
+  border-radius: 999px;
+  min-height: 52px;
+  padding: 0 28px;
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0,0,0,.22);
+  transition: transform .2s ease, opacity .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.intro-enter:hover {
+  transform: translateY(-1px);
+  opacity: .96;
+  background: #fff;
+  box-shadow: 0 22px 46px rgba(0,0,0,.26);
+}
 
 /* ─── CHINESE PAGE ─── */
 #page-zh {
@@ -835,13 +876,6 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
   .tl-node { grid-template-columns: 90px 1px 1fr; gap: 0 24px; }
 }
 @media (max-width: 640px) {
-  .lang-switch {
-    top: 14px;
-    right: 16px;
-  }
-  body[data-lang="en"] .lang-switch {
-    right: 16px;
-  }
   .cn-product {
     padding-top: 86px;
   }
@@ -862,6 +896,14 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
   .cn-detail,
   .cn-footer {
     padding: 34px 18px;
+  }
+  .intro-overlay {
+    justify-content: flex-end;
+    padding:
+      max(28px, env(safe-area-inset-top))
+      max(28px, env(safe-area-inset-right))
+      max(28px, env(safe-area-inset-bottom))
+      max(28px, env(safe-area-inset-left));
   }
   #hero-c {
     max-width: calc(100% - 18px);
@@ -924,11 +966,20 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
 }
 </style>
 </head>
-<body data-lang="zh">
+<body class="intro-active">
 
-<div class="lang-switch" aria-label="Language switch">
-  <button class="lang-btn" type="button" data-lang="zh">中</button>
-  <button class="lang-btn" type="button" data-lang="en">EN</button>
+<div class="intro-gate" id="introGate" aria-label="Intro animation">
+  <iframe
+    class="intro-frame"
+    src="SmartHit%20Hologram%20Hero%20(iMac)%20-%20Standalone.html"
+    title="SmartHit intro animation"
+    loading="eager"
+  ></iframe>
+  <div class="intro-overlay">
+    <div class="intro-card">
+      <button class="intro-enter" id="introEnter" type="button">Enter</button>
+    </div>
+  </div>
 </div>
 
 <div id="page-zh" class="page page-zh">
@@ -957,7 +1008,7 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
       <div class="cn-product-banner"><img src="uploads/Banner_EN.jpg" alt="击智网球功能示意"></div>
 
       <div class="cn-product-stats">
-        <div class="cn-stat"><div class="cn-stat-num">5,000<span>+</span></div><div class="cn-stat-label">累计下载量</div></div>
+        <div class="cn-stat"><div class="cn-stat-num">6,000<span>+</span></div><div class="cn-stat-label">累计下载量</div></div>
         <div class="cn-stat"><div class="cn-stat-num">90<span>%+</span></div><div class="cn-stat-label">回合切分准确率</div></div>
         <div class="cn-stat"><div class="cn-stat-num"><span>1</span> 台 iPhone</div><div class="cn-stat-label">即可完成主要分析流程</div></div>
         <div class="cn-stat"><div class="cn-stat-num"><span>0</span> 额外硬件</div><div class="cn-stat-label">无需额外穿戴或传感设备</div></div>
@@ -1043,7 +1094,7 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
         </div>
         <div class="cn-footer-lines">
           <div><b>公司名称：</b>晓田田文化科技（上海）有限公司</div>
-          <div><b>联系方式：</b>info@xiaotiantian.tech</div>
+          <div><b>联系方式：</b>info@smarthitlab.com</div>
           <div><b>ICP备案/许可证号：</b>沪ICP备2025142696号</div>
           <div><b>服务备案号：</b>沪ICP备2025142696号-1A</div>
           <div><b>服务名称：</b>击智网球</div>
@@ -1135,7 +1186,7 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
   <div class="sh-banner"><img src="uploads/Banner_EN.jpg" alt="SmartHit App"></div>
 
   <div class="sh-stats">
-    <div class="sh-stat"><div class="num">5,000<span>+</span></div><div class="lbl">Downloads</div></div>
+    <div class="sh-stat"><div class="num">6,000<span>+</span></div><div class="lbl">Downloads</div></div>
     <div class="sh-stat"><div class="num">90<span>%+</span></div><div class="lbl">Segmentation accuracy</div></div>
     <div class="sh-stat"><div class="num"><span>1</span> iPhone</div><div class="lbl">On-device analysis</div></div>
     <div class="sh-stat"><div class="num">$<span>0</span></div><div class="lbl">Marketing spend</div></div>
@@ -1284,7 +1335,7 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
       <button class="contact-link" type="button" data-copy="luxiao0206"><span class="cl-label">WeChat</span><span class="cl-name">Xiao LU (Lucio)</span><span class="cl-arrow">luxiao0206</span></button>
       <a href="https://www.linkedin.com/in/yiranw/" class="contact-link" target="_blank"><span class="cl-label">LinkedIn</span><span class="cl-name">Yiran WANG (Damiao)</span><span class="cl-arrow">↗</span></a>
       <a href="https://apps.apple.com/app/id6751442505" class="contact-link" target="_blank"><span class="cl-label">App Store</span><span class="cl-name">SmartHit Tennis</span><span class="cl-arrow">↗</span></a>
-      <a href="mailto:info@xiaotiantian.tech" class="contact-link"><span class="cl-label">Email</span><span class="cl-name">info@xiaotiantian.tech</span><span class="cl-arrow">↗</span></a>
+      <a href="mailto:info@smarthitlab.com" class="contact-link"><span class="cl-label">Email</span><span class="cl-name">info@smarthitlab.com</span><span class="cl-arrow">↗</span></a>
     </div>
   </div>
 </section>
@@ -1383,24 +1434,19 @@ footer { border-top: 1px solid var(--border); padding: 26px var(--gutter); displ
 })();
 </script>
 
-<!-- ════ LANGUAGE TOGGLE ════ -->
+<!-- ════ INTRO GATE ════ -->
 <script>
 (function() {
   const body = document.body;
-  const html = document.documentElement;
-  const titleEl = document.querySelector('title');
-  const zhTitle = '击智网球 | SmartHit Tennis';
-  const enTitle = 'Xiao LU & Yiran WANG';
+  const gate = document.getElementById('introGate');
+  const enter = document.getElementById('introEnter');
+  if (!gate || !enter) return;
 
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.dataset.lang === 'en' ? 'en' : 'zh';
-      body.dataset.lang = lang;
-      html.lang = lang === 'en' ? 'en' : 'zh-CN';
-      if (titleEl) titleEl.textContent = lang === 'en' ? enTitle : zhTitle;
-      window.dispatchEvent(new Event('resize'));
-      window.scrollTo(0, 0);
-    });
+  enter.addEventListener('click', () => {
+    body.classList.remove('intro-active');
+    body.classList.add('intro-dismissed');
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
   });
 })();
 </script>
