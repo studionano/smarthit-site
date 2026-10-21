@@ -264,7 +264,7 @@
         <h1>Política de Privacidad de SmartHit Tennis App</h1>
         
         <div class="version-info">
-            <p><strong>Versión actual:</strong> 1.0.1</p>
+            <p><strong>Versión actual:</strong> 1.1.0</p>
             <p><strong>Fecha de actualización:</strong> Octubre 2026</p>
             <p><strong>Fecha de vigencia:</strong> Octubre 2026</p>
         </div>
@@ -340,20 +340,51 @@
         <p>Para optimizar el rendimiento y mejorar nuestros servicios, recopilamos automáticamente:</p>
         <ul>
             <li><strong>Información del dispositivo:</strong> Modelo del dispositivo, versión del sistema operativo, identificador del dispositivo</li>
-            <li><strong>Estadísticas de uso:</strong> Frecuencia de uso de funciones, duración del procesamiento de video, registros de sesión</li>
+            <li><strong>Estadísticas de uso:</strong> Frecuencia de uso de funciones, duración del procesamiento de video, registros de sesión y acciones dentro de la app (por ejemplo, marcar un peloteo como favorito, elegir qué jugador eres tú, abrir la página de membresía)</li>
+            <li><strong>Uso antes de iniciar sesión:</strong> Asociado a un identificador anónimo del dispositivo generado aleatoriamente por la app (no es el identificador de publicidad y se restablece al desinstalar la app); al iniciar sesión se asocia a tu cuenta</li>
             <li><strong>Información de diagnóstico:</strong> Registros de fallos, datos de rendimiento, informes de errores</li>
             <li><strong>Atribución de anuncios:</strong> Si descargaste la app a través de un anuncio de Apple Search Ads, recibimos información de atribución de AdServices de Apple (campaña, grupo de anuncios, palabra clave, país o región) y la asociamos a tu cuenta. No se utiliza el identificador de publicidad (IDFA) ni se requiere permiso de seguimiento</li>
-            <li><strong>Propósito:</strong> Optimizar el rendimiento de la app, mejorar la experiencia del usuario, resolver problemas técnicos</li>
-            <li><strong>Procesamiento:</strong> Estadísticas locales; solo se cargan datos anonimizados y no identificables personalmente</li>
+            <li><strong>Propósito:</strong> Optimizar el rendimiento de la app, mejorar la experiencia del usuario, resolver problemas técnicos, calcular las cuotas de membresía</li>
+            <li><strong>Procesamiento:</strong> Las estadísticas de uso se asocian a tu cuenta y se almacenan en nuestros servidores; no se usan para publicidad ni se venden o ceden a terceros</li>
         </ul>
 
-        <h3>1.4 Información que Explícitamente No Recopilamos</h3>
+        <h3>1.4 Registros de Juego (al usar Registros)</h3>
+        <ul>
+            <li><strong>Qué recopilamos:</strong> Fecha de juego, hora de inicio y duración de cada sesión, estado de ánimo del día, tu nota de cada sesión (hasta 200 caracteres), objetivos mensuales; en las sesiones procedentes de un video, también las estadísticas de esa sesión (golpes, peloteos, peloteo más largo, velocidad de saque, botes dentro / fuera), nunca imágenes del video</li>
+            <li><strong>Propósito:</strong> Guardar y mostrar tus registros de juego y estadísticas mensuales, y recuperarlos si cambias de teléfono o reinstalas la app</li>
+            <li><strong>Almacenamiento:</strong> En Tencent CloudBase, asociado a tu cuenta</li>
+            <li><strong>Obligatorio:</strong> No; no se genera nada si no usas Registros</li>
+        </ul>
+
+        <h3>1.5 Datos de Salud y Entrada por Voz (requieren un permiso aparte)</h3>
+        <ul>
+            <li><strong>Apple Salud:</strong> Con tu permiso, leemos la frecuencia cardíaca y los entrenamientos de "Tenis" (hora de inicio, duración) para crear registros de juego automáticamente y mostrar tu frecuencia cardíaca mientras juegas. Solo leemos, nunca escribimos en Salud. <strong>La frecuencia cardíaca solo se usa en tu dispositivo y nunca se sube</strong>; los registros creados a partir de entrenamientos (hora de inicio, duración) se guardan según el apartado 1.4</li>
+            <li><strong>Entrada por voz:</strong> Cuando mantienes pulsado para hablar en Registros, el reconocimiento de voz integrado de iOS convierte tus palabras en texto para tu nota. Si el dispositivo lo admite, el reconocimiento se hace solo en el dispositivo y no se sube el audio; si no, lo procesa el servicio de reconocimiento de voz de Apple (se aplica la política de privacidad de Apple). Nunca recibimos ni guardamos grabaciones</li>
+            <li><strong>Desactivarlo:</strong> Puedes retirar el acceso en cualquier momento en Ajustes de iOS - Salud - Acceso a datos y dispositivos, y Ajustes - Privacidad y seguridad - Reconocimiento de voz</li>
+        </ul>
+
+        <h3>1.6 Información de Suscripción y Pago (al comprar una membresía)</h3>
+        <ul>
+            <li><strong>Pago:</strong> Los pagos los gestiona Apple; nunca recibimos los datos de tu tarjeta ni otros datos de pago</li>
+            <li><strong>Qué recopilamos:</strong> ID de la transacción, producto comprado, precio y moneda, país o región de la App Store, fecha de vencimiento de la suscripción</li>
+            <li><strong>Propósito:</strong> Confirmar los beneficios de tu membresía, restaurar compras y atender solicitudes de soporte</li>
+            <li><strong>Almacenamiento:</strong> En Tencent CloudBase, asociado a tu cuenta</li>
+        </ul>
+
+        <h3>1.7 Notificaciones Push (requieren permiso)</h3>
+        <ul>
+            <li><strong>Cómo lo usamos:</strong> Con tu consentimiento, enviamos notificaciones del servicio y recordatorios de actividades a través de JPush</li>
+            <li><strong>Qué recopilamos:</strong> Un ID de registro push (asociado a tu cuenta); para entregar las notificaciones, el SDK de JPush recopila información del dispositivo como el modelo, la versión del sistema y el estado de la red</li>
+            <li><strong>Desactivarlo:</strong> Puedes desactivar las notificaciones en cualquier momento en Ajustes de iOS - Notificaciones</li>
+        </ul>
+
+        <h3>1.8 Información que Explícitamente No Recopilamos</h3>
         <ul style="list-style: none; margin-left: 0;">
             <li class="not-collect">❌ El contenido de tus videos de entrenamiento</li>
             <li class="not-collect">❌ Tu ubicación geográfica</li>
             <li class="not-collect">❌ Tus contactos o libreta de direcciones</li>
             <li class="not-collect">❌ Datos de uso de otras aplicaciones</li>
-            <li class="not-collect">❌ Cualquier información personal sensible</li>
+            <li class="not-collect">❌ Tu frecuencia cardíaca u otros datos de salud (solo se usan en tu dispositivo y nunca se suben a nuestros servidores)</li>
         </ul>
 
         <hr class="divider">
@@ -369,6 +400,8 @@
             <li>Optimizar el rendimiento y la precisión del modelo de IA</li>
             <li>Mejorar las funciones de la aplicación y la experiencia del usuario</li>
             <li>Conocer a través de qué canal promocional (como Apple Search Ads) descargaste la app, para evaluar la eficacia de nuestras promociones</li>
+            <li>Crear tus registros de juego, estadísticas mensuales y progreso de objetivos</li>
+            <li>Confirmar los beneficios y cuotas de tu membresía</li>
         </ul>
 
         <h3>2.2 Seguridad y Prevención</h3>
@@ -384,6 +417,7 @@
             <li>Responder a tus consultas y comentarios</li>
             <li>Enviar notificaciones y actualizaciones importantes del servicio</li>
             <li>Proporcionar soporte técnico y atención al cliente</li>
+            <li>Enviar notificaciones push con tu consentimiento (puedes desactivarlas en cualquier momento)</li>
         </ul>
 
         <h3>2.4 No Utilizaremos Tu Información Para</h3>
@@ -409,9 +443,9 @@
 
         <h3>3.2 Resultados del Procesamiento</h3>
         <ul>
-            <li><strong>Almacenamiento local:</strong> Los resultados de reconocimiento de peloteos, estadísticas de duración y otros datos se almacenan localmente</li>
-            <li><strong>Sincronización en la nube (Opcional):</strong> Solo se sincronizan metadatos (como fecha y duración del entrenamiento) — el contenido de video nunca se incluye</li>
-            <li><strong>Control total:</strong> Puedes elegir si habilitar la sincronización en la nube</li>
+            <li><strong>Almacenamiento local:</strong> Los resultados de reconocimiento de peloteos, la identificación de jugadores y el análisis de golpes y botes se almacenan en tu dispositivo</li>
+            <li><strong>Almacenamiento en la nube:</strong> Tras iniciar sesión, los registros de juego (ver 1.4), las estadísticas de uso y el consumo de la membresía se guardan en la nube, nunca imágenes de video</li>
+            <li><strong>Tu control:</strong> Puedes borrar el registro de un día en Registros, o eliminar tu cuenta para borrar todos los datos en la nube</li>
         </ul>
 
         <hr class="divider">
@@ -452,7 +486,7 @@
             <h4>Tencent CloudBase</h4>
             <ul>
                 <li><strong>Propósito:</strong> Almacenamiento de información de cuenta y datos de usuario</li>
-                <li><strong>Información compartida:</strong> Información de cuenta, estadísticas de uso</li>
+                <li><strong>Información compartida:</strong> Información de cuenta, registros de juego, estadísticas de uso, información de suscripción</li>
                 <li><strong>Política de privacidad:</strong> <a href="https://cloud.tencent.com/document/product/301/11470" target="_blank">https://cloud.tencent.com/document/product/301/11470</a></li>
             </ul>
         </div>
@@ -475,6 +509,33 @@
             </ul>
         </div>
 
+        <div class="third-party-service">
+            <h4>JPush (servicio de notificaciones push)</h4>
+            <ul>
+                <li><strong>Propósito:</strong> Enviar notificaciones push</li>
+                <li><strong>Información compartida:</strong> ID de registro push, modelo del dispositivo, versión del sistema, estado de la red</li>
+                <li><strong>Política de privacidad:</strong> <a href="https://www.jiguang.cn/license/privacy" target="_blank">https://www.jiguang.cn/license/privacy</a></li>
+            </ul>
+        </div>
+
+        <div class="third-party-service">
+            <h4>Reconocimiento de voz de Apple</h4>
+            <ul>
+                <li><strong>Propósito:</strong> Convertir en texto la entrada por voz cuando el reconocimiento en el dispositivo no está disponible</li>
+                <li><strong>Información compartida:</strong> El audio de tu voz (iOS lo envía directamente a Apple; nosotros no lo recibimos)</li>
+                <li><strong>Política de privacidad:</strong> <a href="https://www.apple.com/legal/privacy/" target="_blank">https://www.apple.com/legal/privacy/</a></li>
+            </ul>
+        </div>
+
+        <div class="third-party-service">
+            <h4>Compras dentro de la app de Apple App Store</h4>
+            <ul>
+                <li><strong>Propósito:</strong> Procesar los pagos de la suscripción de membresía y verificar las compras</li>
+                <li><strong>Información compartida:</strong> Información de la transacción (ID de la transacción, producto comprado)</li>
+                <li><strong>Política de privacidad:</strong> <a href="https://www.apple.com/legal/privacy/" target="_blank">https://www.apple.com/legal/privacy/</a></li>
+            </ul>
+        </div>
+
         <h3>4.3 Seguridad de Datos de Terceros</h3>
         <ul>
             <li>Todos los servicios de terceros han sido evaluados en materia de seguridad</li>
@@ -490,7 +551,7 @@
         <ul>
             <li><strong>Datos de video:</strong> Almacenados completamente en tu dispositivo local</li>
             <li><strong>Información de cuenta:</strong> Almacenada en servidores Tencent CloudBase ubicados en China</li>
-            <li><strong>Estadísticas de uso:</strong> Datos anonimizados almacenados en nuestros servidores</li>
+            <li><strong>Estadísticas de uso, registros de juego, información de suscripción:</strong> Almacenados junto con la información de cuenta en servidores Tencent CloudBase ubicados en China</li>
         </ul>
 
         <h3>5.2 Período de Retención</h3>
@@ -571,9 +632,9 @@
                 </tr>
                 <tr>
                     <td><strong>Micrófono</strong></td>
-                    <td>Grabar audio del video</td>
-                    <td>Al pulsar el botón de grabación</td>
-                    <td>Sí</td>
+                    <td>Grabar audio del video; entrada por voz para notas en Registros</td>
+                    <td>Al pulsar el botón de grabación; la primera vez que mantienes pulsado para hablar</td>
+                    <td>Sí, para grabar</td>
                 </tr>
                 <tr>
                     <td><strong>Acceso a la Biblioteca de Fotos</strong></td>
@@ -592,6 +653,24 @@
                     <td>Verificación de inicio de sesión, sincronización de datos</td>
                     <td>Durante el inicio de sesión o sincronización</td>
                     <td>Sí</td>
+                </tr>
+                <tr>
+                    <td><strong>Reconocimiento de voz</strong></td>
+                    <td>Convertir en texto la entrada por voz</td>
+                    <td>La primera vez que mantienes pulsado para hablar</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><strong>Salud (solo lectura)</strong></td>
+                    <td>Leer entrenamientos de tenis y frecuencia cardíaca para crear registros de juego y mostrar la frecuencia cardíaca</td>
+                    <td>Al activar la sincronización con Salud en Registros</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><strong>Notificaciones</strong></td>
+                    <td>Enviar notificaciones del servicio y recordatorios de actividades</td>
+                    <td>Tú eliges tras un aviso en la app</td>
+                    <td>No</td>
                 </tr>
             </tbody>
         </table>
