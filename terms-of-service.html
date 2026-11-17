@@ -143,16 +143,27 @@
                 font-size: 17px;
             }
         }
+
+        .lang-switcher { text-align: center; margin-bottom: 20px; }
+        .lang-switcher a { display: inline-block; padding: 6px 16px; margin: 0 4px; border-radius: 4px;
+            text-decoration: none; color: #2c3e50; background: #ecf0f1; font-size: 14px; }
+        .lang-switcher a.active { background: #27ae60; color: white; }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="lang-switcher">
+            <a href="terms-of-service.html" class="active">中文</a>
+            <a href="terms-of-service-en.html">English</a>
+            <a href="terms-of-service-es.html">Español</a>
+        </div>
+
         <h1>击智APP用户服务协议</h1>
-        
+
         <div class="version-info">
-            <p><strong>当前版本：</strong>1.0.1</p>
-            <p><strong>更新日期：</strong>2025年10月</p>
-            <p><strong>生效日期：</strong>2025年10月</p>
+            <p><strong>当前版本：</strong>1.1.0</p>
+            <p><strong>更新日期：</strong>2026年11月</p>
+            <p><strong>生效日期：</strong>2026年11月</p>
         </div>
 
         <p>欢迎使用击智APP！请您仔细阅读以下服务协议。使用击智APP即表示您同意本协议的所有条款。</p>
@@ -167,7 +178,7 @@
             <li>对回合进行智能筛选和管理</li>
             <li>视频编辑功能，支持精确裁剪和调整</li>
             <li>训练记录收藏和管理</li>
-            <li>后续将提供落点分析、轨迹识别等高级功能</li>
+            <li>球速、落点、轨迹特效、镜头跟随等高级功能（部分功能需要会员或击智豆，见第七条）</li>
         </ul>
 
         <h3>1.2 服务特点</h3>
@@ -199,6 +210,7 @@
             <li>合理使用APP功能，不得用于非法用途</li>
             <li>不得利用技术手段破坏或干扰APP的正常运行</li>
             <li>不得利用APP从事任何违法或侵犯他人权益的行为</li>
+            <li>不得通过批量注册账号、篡改设备时间、利用程序漏洞等不正当方式获取会员权益、AI 时长或击智豆</li>
         </ul>
 
         <h3>2.3 设备要求</h3>
@@ -228,7 +240,7 @@
         </ul>
 
         <h2>四、隐私保护</h2>
-        <p>我们重视您的隐私保护，详细内容请查看<a href="https://www.smarthitlab.com/privacy-policy.html" target="_blank" rel="noopener noreferrer">《击智隐私政策》</a>。核心原则：</p>
+        <p>我们重视您的隐私保护，详细内容请查看<a href="privacy-policy.html">《击智隐私政策》</a>。核心原则：</p>
         <ul>
             <li>视频数据仅存储在本地设备</li>
             <li>最小化收集必要信息</li>
@@ -274,6 +286,7 @@
             <li>重大变更将提前通知用户</li>
             <li>持续优化AI模型以提升识别准确率</li>
             <li>可能增加、修改或删除某些功能</li>
+            <li>为保证计费和数据安全，我们可能停止支持过旧的 App 版本，届时需要更新到最新版本后继续使用</li>
         </ul>
 
         <h3>6.2 服务终止</h3>
@@ -287,25 +300,49 @@
         <h3>6.3 账号注销</h3>
         <ul>
             <li>您可以通过APP内的设置功能申请注销账号</li>
-            <li>注销后，您的账号信息将被删除</li>
+            <li>注销后，您的账号信息将被删除，账号中剩余的 AI 时长和击智豆一并作废</li>
+            <li>注销账号不会自动取消 App Store 订阅，请先在 iPhone「设置」中取消</li>
             <li>注销前请确保已备份您需要保留的数据</li>
             <li>注销操作不可撤销</li>
         </ul>
 
         <h2>七、费用与付费服务</h2>
 
-        <h3>7.1 当前服务</h3>
+        <h3>7.1 免费功能与会员</h3>
         <ul>
-            <li>当前版本提供的核心功能免费使用</li>
-            <li>我们保留在未来推出付费功能或订阅服务的权利</li>
+            <li>击智APP提供免费版本，可使用视频处理（每月有 AI 时长额度）、回合管理、普通下载等功能</li>
+            <li>会员（Pro、Max）提供更多 AI 时长、更多每月会员击智豆、去水印等权益</li>
+            <li>各档位的具体权益和额度以 App 内会员页、规则页显示为准</li>
         </ul>
 
-        <h3>7.2 未来付费服务</h3>
+        <h3>7.2 自动续期订阅</h3>
         <ul>
-            <li>如推出付费服务，将提前告知用户</li>
-            <li>用户可自主选择是否购买付费服务</li>
-            <li>付费服务的具体内容、价格和使用规则将另行说明</li>
-            <li>已购买的付费服务将按照购买时的条款执行</li>
+            <li>会员通过 Apple App Store 的自动续期订阅购买，由 Apple 向您的 Apple ID 账户收费；价格以购买时 App Store 显示为准</li>
+            <li>除非您在当前订阅周期结束前至少 24 小时关闭自动续期，订阅将自动续订，Apple 会在当前周期结束前 24 小时内扣取下一周期费用</li>
+            <li>您可以在 iPhone「设置 - Apple ID - 订阅」中管理或取消订阅；取消后，已付费周期内的权益保留到到期日</li>
+            <li>如提供免费试用，试用期内购买订阅后，未用完的试用期将作废</li>
+            <li>退款由 Apple 按其政策处理，请向 Apple 申请</li>
+            <li>换手机或重新安装后，可在 App 内使用「恢复购买」找回订阅</li>
+        </ul>
+
+        <h3>7.3 击智豆</h3>
+        <ul>
+            <li>击智豆是 App 内用于解锁高级功能（例如带轨迹或镜头跟随特效的回合下载）的虚拟积分，在击智豆功能开放后适用</li>
+            <li>获取方式包括每月会员豆，以及签到、打卡、完成训练、训练时长抽奖、新手任务、邀请好友、活动等；抽奖免费参加，不能花钱或花豆参与</li>
+            <li>目前击智豆不能用现金购买；如以后开放购买，将另行说明价格和规则</li>
+            <li>击智豆没有现金价值，不能兑换现金或 AI 时长，不能转让、赠送或在账号之间合并</li>
+            <li>每月会员豆和通过上述方式获得的击智豆，在每月 1 日（按您手机的本地时间）0 点清零，不能结转到下个月</li>
+            <li>预览特效免费，下载到手机时才花豆；会花豆时 App 会在下载前提示数量；同一个回合本月只扣一次</li>
+            <li>击智豆余额不足时不能使用相应高级功能，不会透支</li>
+            <li>通过违反本协议第 2.2 条的方式获得的击智豆，我们有权不予发放或扣回；情节严重的，可以限制账号使用</li>
+            <li>各功能的标价、各档位每月会员豆数量和赚豆规则以 App 内规则页为准</li>
+        </ul>
+
+        <h3>7.4 规则调整</h3>
+        <ul>
+            <li>我们可能调整会员权益、击智豆的获取和使用规则以及功能标价，调整会通过 App 内公告或规则页告知</li>
+            <li>调低每月会员豆时从下个月起生效，当月已到账的不收回；调整功能标价时从调整之后的使用开始按新价格计算，已花费的击智豆不退不补</li>
+            <li>已购买的订阅按 App Store 的订阅条款执行</li>
         </ul>
 
         <h2>八、争议解决</h2>
@@ -332,24 +369,20 @@
         <p>本协议构成您与击智之间关于使用APP的完整协议，取代之前的所有口头或书面协议。</p>
 
         <h3>9.3 联系我们</h3>
+        <p>如有任何问题或建议，请通过以下方式联系我们：</p>
         <div class="contact-info">
-            <p>如有任何问题或建议，请通过以下方式联系我们：</p>
             <ul>
-                <li><strong>邮箱：</strong><a href="mailto:info@smarthitlab.com">info@smarthitlab.com</a></li>
-                <li><strong>应用内反馈功能</strong></li>
-            </ul>
+            <li><strong>邮箱：</strong><a href="mailto:info@smarthitlab.com">info@smarthitlab.com</a></li>
+            <li><strong>应用内反馈功能</strong></li>
+        </ul>
         </div>
 
         <h3>9.4 特别声明</h3>
         <p>本应用由晓田田科技（SmartHit Lab）开发和运营。我们致力于为网球爱好者提供优质的训练辅助工具，感谢您的支持与信任！</p>
 
-        <div class="highlight">
-            <p><strong>本协议最终解释权归击智APP所有，在法律允许的范围内。</strong></p>
-        </div>
-
         <div class="footer">
             <p><strong>感谢您使用击智APP！祝您训练愉快，球技进步！</strong> <span class="emoji">🎾</span></p>
-            <p style="margin-top: 10px;">© 2025 晓田田科技 (SmartHit Lab) - 击智网球</p>
+            <p style="margin-top: 10px;">© 2026 晓田田科技 (SmartHit Lab) - 击智网球</p>
         </div>
     </div>
 </body>
